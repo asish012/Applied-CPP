@@ -11,8 +11,8 @@ public:
 	~Image ();
 
 	// Copy constractor and Assignemt operator
-	Image (const apImage& src);
-	Image& operator= (const apImage& src);
+	Image (const Image& src);
+	Image& operator= (const Image& src);
 
 	void swap (Image& src);
 	void setPixel (int x, int y, unsigned char pixel);
@@ -32,6 +32,7 @@ private:
 	
 	int width_; // Image width
 	int height_; // Image height
+	unsigned char * pixels_;
 };
 
 #endif // IMAGE_H

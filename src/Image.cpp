@@ -16,7 +16,7 @@ void Image::init ()
 	pixels_ = new unsigned char [width_ * height_];
 }
 
-Image::Image (const apImage& src) : width_ (0), height_ (0), pixels_ (0)
+Image::Image (const Image& src) : width_ (0), height_ (0), pixels_ (0)
 {
 	if (src.isValid()) 
 	{
@@ -27,7 +27,7 @@ Image::Image (const apImage& src) : width_ (0), height_ (0), pixels_ (0)
 	}
 }
 
-// Image& Image::operator= (const apImage& src)
+// Image& Image::operator= (const Image& src)
 // {
 // 	if (&src != this) 
 // 	{
@@ -48,14 +48,14 @@ template<class T> void swap (T& a, T& b)
 	b = copy;
 }
 
-void Image::swap (apImage& src)
+void Image::swap (Image& src)
 {
 	::swap (width_, src.width_);
 	::swap (height_, src.height_);
 	::swap (pixels_, src.pixels_);
 }
 
-Image& Image::operator= (const apImage& src)
+Image& Image::operator= (const Image& src)
 {
 	Image temp (src);
 	swap (temp);
