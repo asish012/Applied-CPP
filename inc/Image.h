@@ -8,7 +8,7 @@ class Image
 public:
 	Image ();
 	Image (int width, int height);	
-	~Image ();
+	~Image () { delete [] pixels_; }
 
 	// Copy constractor and Assignemt operator
 	Image (const Image& src);

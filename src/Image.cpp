@@ -16,6 +16,11 @@ void Image::init ()
 	pixels_ = new unsigned char [width_ * height_];
 }
 
+Image::Image(int w, int h) : width_(w), height_(h)
+{
+	pixels_ = new unsigned char [width_ * height_];
+}
+
 Image::Image (const Image& src) : width_ (0), height_ (0), pixels_ (0)
 {
 	if (src.isValid()) 
@@ -41,7 +46,8 @@ Image::Image (const Image& src) : width_ (0), height_ (0), pixels_ (0)
 // 	return *this;
 // }
 
-template<class T> void swap (T& a, T& b)
+template<class T> 
+void swap (T& a, T& b)
 {
 	T copy(a);
 	a = b;
