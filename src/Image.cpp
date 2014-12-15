@@ -18,7 +18,8 @@ void Image::init ()
 
 Image::Image(int w, int h) : width_(w), height_(h)
 {
-	pixels_ = new unsigned char [width_ * height_];
+//	pixels_ = new unsigned char [width_ * height_];
+	init();
 }
 
 Image::Image (const Image& src) : width_ (0), height_ (0), pixels_ (0)
