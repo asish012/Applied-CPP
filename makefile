@@ -2,7 +2,7 @@
 
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
-OBJS = Image.o main.o
+OBJS = Image.o apAllocator.o main.o
 
 LIBS =
 
@@ -18,7 +18,7 @@ $(TARGET): dirs $(OBJS)
 %.o: src/%.cpp
 	$(CXX) -I $(INC) -c $< -o obj/$@
 	
-run: $(TARGET)
+run: bin/$(TARGET)
 	./bin/$(TARGET)
 
 dirs:

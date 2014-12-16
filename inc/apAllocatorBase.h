@@ -8,6 +8,8 @@
 #ifndef INC_APALLOCATORBASE_H_
 #define INC_APALLOCATORBASE_H_
 
+#include <iostream>
+
 template <typename T>
 class apAllocatorBase_
 {
@@ -24,7 +26,7 @@ public:
 	void addRef () { ref_++; }
 	void subRef ()
 	{
-		ref--;
+		ref_--;
 		if (!ref_) delete this;
 	}
 
