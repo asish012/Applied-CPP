@@ -1,29 +1,30 @@
-.PHONY: all run
+SRC := src
+OBJ := obj
+BIN := bin
 
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
+CC := g++
+CFLAGS := -std=c++0x -Wall -O3
 
-OBJS = Image.o apAllocator.o main.o
+headers := $(wildcard inc/*.h)
+sources := $(wildcard src/*.cpp)
+#objects := $(patsubst %.cpp, %.o, $(notdir $(sources)))
+objects := $(addprefix $(OBJ)/, $(patsubst %.cpp,%.o,$(notdir $(sources))))
 
-LIBS =
-
-INC = inc
-
-TARGET = main
+TARGET := $(BIN)/Scheck
 
 all: $(TARGET)
 
-$(TARGET): dirs $(OBJS)
-	$(CXX) $(addprefix obj/,$(OBJS)) $(LIBS) -o bin/$(TARGET)
+$(TARGET): $(objects)
+	$(CC) -I inc $(objects) -o $@
 
-%.o: src/%.cpp
-	$(CXX) -I $(INC) -c $< -o obj/$@
-	
-run: bin/$(TARGET)
-	./bin/$(TARGET)
+$(OBJ)/%.o: $(SRC)/%.cpp | dirs
+	$(CC) -I inc $(CFLAGS) -c $< -o $@
 
 dirs:
-	mkdir -p bin
-	mkdir -p obj
+	-@mkdir -p $(OBJ) $(BIN)
 
 clean:
-	rm -rf obj bin
+	-rm $(OBJ)/*.o $(TARGET)
+
+run: $(TARGET)
+	./$(TARGET)
